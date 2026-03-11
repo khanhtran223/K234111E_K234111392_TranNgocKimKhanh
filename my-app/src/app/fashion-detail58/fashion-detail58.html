@@ -1,0 +1,30 @@
+<div class="detail-wrap" *ngIf="fashion">
+
+  <!-- HEADER -->
+  <div class="detail-header">
+    <button class="btn-back" (click)="goBack()">← Back to list</button>
+    <span class="header-label">Admin — View Detail</span>
+    <button class="btn-edit" (click)="goEdit()">Edit →</button>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="detail-content">
+    <div class="meta-row">
+      <span class="tag">{{ fashion.style }}</span>
+      <span class="meta-date">{{ fashion.createdAt | date:'dd MMMM yyyy' }}</span>
+    </div>
+
+    <h1 class="detail-title">{{ fashion.title }}</h1>
+
+    <div class="detail-divider"></div>
+
+    <img class="detail-img" [src]="fashion.thumbnail"
+         onerror="this.src='https://via.placeholder.com/800x400?text=No+Image'">
+
+    <div class="detail-body" [innerHTML]="fashion.details"></div>
+  </div>
+
+</div>
+
+<div *ngIf="!fashion && !errMessage" class="loading">Loading...</div>
+<p class="err-msg" *ngIf="errMessage">{{ errMessage }}</p>

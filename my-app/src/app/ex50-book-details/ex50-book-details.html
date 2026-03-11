@@ -1,0 +1,65 @@
+<p>ex50-book-details works!</p>
+<div class="container">
+  <h2>CHI TIẾT SÁCH</h2>
+  
+  <!-- Hiển thị lỗi nếu có -->
+  <div class="error-message" *ngIf="errMessage">
+    <p>{{ errMessage }}</p>
+  </div>
+  
+  <!-- Thông tin chi tiết sách -->
+  <div class="book-detail" *ngIf="book.BookId">
+    <table class="detail-table">
+      <tr>
+        <td class="label">Book Id:</td>
+        <td>{{ book.BookId }}</td>
+      </tr>
+      <tr>
+        <td class="label">Book Name:</td>
+        <td>{{ book.BookName }}</td>
+      </tr>
+            <tr>
+        <td class="label">Mô tả:</td>
+        <td>{{ book.Mota }}</td>
+      </tr>
+      <tr>
+        <td class="label">Price:</td>
+        <td>{{ book.Price | number:'1.0-0' }} VNĐ</td>
+      </tr>
+      <tr>
+        <td class="label">Ảnh bìa:</td>
+        <td>
+          <img 
+            src="http://localhost:3000/assets/book_images/{{ book.Anhbia }}" 
+            width="200" 
+            height="200"
+            alt="{{ book.BookName }}"
+            *ngIf="book.Anhbia"
+          />
+          <p *ngIf="!book.Anhbia">Chưa có ảnh bìa</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="label">Ngày cập nhật:</td>
+        <td>{{ book.Ngaycapnhat }}</td>
+      </tr>
+      <tr>
+        <td class="label">Số lượng tồn:</td>
+        <td>{{ book.Soluongton }}</td>
+      </tr>
+      <tr>
+        <td class="label">Mã CD:</td>
+        <td>{{ book.MaCD }}</td>
+      </tr>
+      <tr>
+        <td class="label">Mã NXB:</td>
+        <td>{{ book.MaNXB }}</td>
+      </tr>
+    </table>
+    
+    <!-- Action buttons -->
+    <div class="action-buttons">
+      <button class="btn-back" (click)="backToList()">Quay lại danh sách</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<!-- HEADER -->
+<div class="site-header">
+  <button class="btn-home" routerLink="/ex-58-admin">Admin</button>
+  <span class="logo">FASHION</span>
+  <span></span>
+</div>
+
+<!-- SEARCH BAR -->
+<div class="search-bar">
+  <select [(ngModel)]="searchStyle" (change)="search()">
+    <option value="">-- Tất cả Style --</option>
+    <option *ngFor="let s of allStyles" [value]="s">{{s}}</option>
+  </select>
+</div>
+
+<p class="err">{{errMessage}}</p>
+
+<!-- NHÓM THEO STYLE -->
+<div class="page">
+  <div class="group" *ngFor="let group of groupedFashions">
+    <h2 class="group-title">{{group.style}}</h2>
+    <div class="grid">
+      <div class="card" *ngFor="let fashion of group.items"
+           (click)="viewDetail(fashion._id)">
+        <div class="card-img">
+          <img src="{{fashion.thumbnail}}"
+               onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+        </div>
+        <p class="card-title">{{fashion.title}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="groupedFashions.length === 0" class="no-result">
+    Không tìm thấy Fashion nào.
+  </div>
+</div>

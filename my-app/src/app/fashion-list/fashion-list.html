@@ -1,0 +1,48 @@
+<div class="admin-container" style="margin-top:0; padding-top:10px">
+    <!-- TOOLBAR -->
+  <div class="toolbar">
+    <h2>📋 Danh sách Fashion — Admin</h2>
+    <div class="toolbar-right">
+      <button class="btn-add"  (click)="router.navigate(['/ex-58-new'])">➕ Add New Fashion</button>
+      <button class="btn-back" (click)="goClient()">🌐 Về trang Client</button>
+    </div>
+  </div>
+
+  <p class="err" *ngIf="errMessage">{{errMessage}}</p>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Thumbnail</th>
+        <th>Title</th>
+        <th>Style</th>
+        <th>Ngày tạo</th>
+        <th>Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fashion of fashions; let i = index">
+        <td>{{i+1}}</td>
+        <td>
+          <img src="{{fashion.thumbnail}}" width="80" height="60"
+               style="object-fit:cover"
+               onerror="this.src='https://via.placeholder.com/80x60?text=No+Img'">
+        </td>
+        <td>{{fashion.title}}</td>
+        <td>{{fashion.style}}</td>
+        <td>{{fashion.createdAt | date:'dd/MM/yyyy'}}</td>
+        <td class="action-cell">
+          <button class="btn-view"   (click)="viewDetail(fashion._id)">👁 View</button>
+          <button class="btn-edit"   (click)="editFashion(fashion._id)">✏️ Edit</button>
+          <button class="btn-delete" (click)="deleteFashion(fashion._id)">🗑 Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="fashions.length === 0">
+        <td colspan="6" style="text-align:center; padding:30px; color:#999">
+          Chưa có dữ liệu nào.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

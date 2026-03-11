@@ -1,0 +1,35 @@
+<div class="page" *ngIf="fashion">
+
+  <!-- HEADER -->
+  <div class="site-header">
+    <button class="btn-back" (click)="goBack()">← Back</button>
+    <span class="logo">FASHION</span>
+    <span style="width:80px"></span>
+  </div>
+
+  <!-- ARTICLE -->
+  <article class="article">
+
+    <div class="article-meta">
+      <span class="tag">{{ fashion.style }}</span>
+      <span class="meta-date">{{ fashion.createdAt | date:'MMMM d, y' }}</span>
+    </div>
+
+    <h1 class="article-title">{{ fashion.title }}</h1>
+
+    <div class="article-divider"></div>
+
+    <img class="article-img" [src]="fashion.thumbnail"
+         onerror="this.src='https://via.placeholder.com/800x480?text=No+Image'">
+
+    <!-- WYSIWYG HTML content -->
+    <div class="article-body" [innerHTML]="safeDetails"></div>
+
+  </article>
+
+</div>
+
+<div *ngIf="!fashion && !errMessage" class="loading">
+  <div class="loading-dot"></div>
+</div>
+<p class="err-msg" *ngIf="errMessage">{{ errMessage }}</p>

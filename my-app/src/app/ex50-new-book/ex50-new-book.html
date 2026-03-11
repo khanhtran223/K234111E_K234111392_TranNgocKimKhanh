@@ -1,0 +1,147 @@
+<p>ex50-new-book works!</p>
+<div class="container">
+  <h2>THÊM SÁCH MỚI</h2>
+  
+  <!-- Hiển thị thông báo -->
+  <div class="success-message" *ngIf="successMessage">
+    <p>{{ successMessage }}</p>
+  </div>
+  
+  <div class="error-message" *ngIf="errMessage">
+    <p>{{ errMessage }}</p>
+  </div>
+  
+  <!-- Form nhập thông tin sách -->
+  <form class="book-form">
+    <table class="form-table">
+      <tr>
+        <td class="label">Book Id:</td>
+        <td>
+          <input 
+            type="text" 
+            class="form-control" 
+            name="BookId"
+            placeholder="Nhập Book Id"
+            [(ngModel)]="book.BookId"
+            required
+          />
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="label">Book Name:</td>
+        <td>
+          <textarea 
+            class="form-control" 
+            name="BookName"
+            placeholder="Nhập tên sách"
+            [(ngModel)]="book.BookName"
+            rows="4"
+            required
+          ></textarea>
+        </td>
+      </tr>
+
+      
+      <tr>
+        <td class="label">Mô tả:</td>
+        <td>
+          <textarea 
+            class="form-control" 
+            name="Mota"
+            placeholder="Nhập mô tả chi tiết về sách"
+            [(ngModel)]="book.Mota"
+            rows="4"
+          ></textarea>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="label">Price:</td>
+        <td>
+          <input 
+            type="number" 
+            class="form-control" 
+            name="Price"
+            placeholder="Nhập giá sách"
+            [(ngModel)]="book.Price"
+            required
+          />
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="label">Ảnh bìa:</td>
+        <td>
+          <input 
+            type="text" 
+            class="form-control" 
+            name="Anhbia"
+            placeholder="Nhập tên file ảnh bìa (vd: THCB.jpg)"
+            [(ngModel)]="book.Anhbia"
+          />
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="label">Ngày cập nhật:</td>
+        <td>
+          <input 
+            type="text" 
+            class="form-control" 
+            name="Ngaycapnhat"
+            placeholder="dd/mm/yyyy HH:mm:ss SA/CH (vd: 25/10/2014 12.00.00 SA)"
+            [(ngModel)]="book.Ngaycapnhat"
+          />
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="label">Số lượng tồn:</td>
+        <td>
+          <input 
+            type="number" 
+            class="form-control" 
+            name="Soluongton"
+            placeholder="Nhập số lượng tồn"
+            [(ngModel)]="book.Soluongton"
+          />
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="label">Mã CD:</td>
+        <td>
+          <input 
+            type="number" 
+            class="form-control" 
+            name="MaCD"
+            placeholder="Nhập mã CD"
+            [(ngModel)]="book.MaCD"
+          />
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="label">Mã NXB:</td>
+        <td>
+          <input 
+            type="number" 
+            class="form-control" 
+            name="MaNXB"
+            placeholder="Nhập mã nhà xuất bản"
+            [(ngModel)]="book.MaNXB"
+          />
+        </td>
+      </tr>
+      
+      <tr>
+        <td colspan="2" class="action-buttons">
+          <button type="button" class="btn-submit" (click)="createBook()">Thêm sách</button>
+          <button type="button" class="btn-reset" (click)="resetForm()">Reset</button>
+          <button type="button" class="btn-back" (click)="backToList()">Quay lại</button>
+        </td>
+      </tr>
+    </table>
+  </form>
+</div>

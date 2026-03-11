@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="page-header">
+    <h2>➕ Thêm Fashion mới</h2>
+    <button class="btn-back" (click)="goBack()">← Quay lại danh sách</button>
+  </div>
+  <p class="err">{{errMessage}}</p>
+
+  <table class="form-table">
+    <tr>
+      <td class="label">Fashion Style:</td>
+      <td>
+        <select class="form-control" [(ngModel)]="fashion.style" name="style">
+          <option *ngFor="let s of styles" [value]="s">{{s}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Fashion Title:</td>
+      <td>
+        <input type="text" class="form-control" name="title"
+               placeholder="Nhập tiêu đề" [(ngModel)]="fashion.title"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Thumbnail URL:</td>
+      <td>
+        <input type="text" class="form-control" name="thumbnail"
+               placeholder="https://..."
+               [(ngModel)]="fashion.thumbnail"/>
+      </td>
+    </tr>
+    <tr>
+      <td class="label">Hoặc chọn file ảnh:</td>
+      <td>
+        <input type="file" (change)="onFileSelected($event)" accept="image/*">
+        <img *ngIf="fashion.thumbnail" [src]="fashion.thumbnail"
+             width="120" height="80"
+             style="object-fit:cover; margin-top:8px; display:block; border-radius:4px; border:1px solid #ddd">
+      </td>
+    </tr>
+    <tr>
+      <td class="label" valign="top" style="padding-top:12px">Fashion Details<br><small>(WYSIWYG)</small>:</td>
+      <td>
+        <editor
+          [(ngModel)]="fashion.details"
+          name="details"
+          [init]="editorConfig">
+        </editor>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" class="btn-row">
+        <button class="btn-save"   (click)="postFashion()">💾 Lưu</button>
+        <button class="btn-cancel" (click)="goBack()">❌ Hủy</button>
+      </td>
+    </tr>
+  </table>
+</div>

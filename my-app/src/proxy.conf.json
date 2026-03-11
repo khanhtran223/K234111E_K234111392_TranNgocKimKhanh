@@ -1,0 +1,58 @@
+[
+    {
+        "context": ["/exchange"],
+        "target": "https://www.dongabank.com.vn",
+        "secure": true, 
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    {
+        "context": ["/products"],
+        "target": "https://fakestoreapi.com",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    { 
+        "context": ["/books"], 
+        "target": "http://localhost:3000", 
+        "secure": true, 
+        "changeOrigin": true, 
+        "logLevel": "debug" 
+    },
+    {
+        "context": ["/api"],
+        "target": "https://api.coingecko.com",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    { 
+        "context": ["/upload"], 
+        "target": "http://localhost:3001", 
+        "secure": true, 
+        "changeOrigin": true, 
+        "logLevel": "debug" 
+    },
+    {
+        "context": ["/register"],
+        "target": "http://localhost:3002",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    {
+        "context": ["/login"],
+        "target": "http://localhost:3002",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    {
+        "context": ["/fashions"],
+        "target": "http://localhost:4000",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+]

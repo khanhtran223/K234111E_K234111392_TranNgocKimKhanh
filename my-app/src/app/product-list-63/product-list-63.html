@@ -1,0 +1,41 @@
+<p>product-list-63 works!</p>
+<div class="container mt-4">
+
+  <!-- Thanh trên cùng -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h3>🛍️ Danh Sách Sản Phẩm</h3>
+    <button class="btn btn-warning" (click)="goToCart()">
+      🛒 Xem Giỏ Hàng
+    </button>
+  </div>
+
+  <!-- Thông báo thêm vào giỏ -->
+  <div *ngIf="message" class="alert alert-success">{{ message }}</div>
+
+  <!-- Danh sách sản phẩm -->
+  <table class="table table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Mã SP</th>
+        <th>Tên Sản Phẩm</th>
+        <th>Giá</th>
+        <th>Hình Ảnh</th>
+        <th>Thao Tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{ p.ProductId }}</td>
+        <td>{{ p.ProductName }}</td>
+        <td>{{ p.Price | number:'1.0-0' }} VNĐ</td>
+        <img [src]="'http://localhost:3002/' + p.Image" width="80" height="80" style="object-fit: cover; border-radius: 8px;" />
+        <td>
+          <button class="btn btn-primary btn-sm" (click)="addToCart(p)">
+            ADD TO CART
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,56 @@
+<div class="form-wrap">
+
+  <!-- HEADER -->
+  <div class="form-header">
+    <button class="btn-back" (click)="goBack()">← Back</button>
+    <h1 class="form-title">Edit Fashion</h1>
+    <span></span>
+  </div>
+
+  <p class="err-msg" *ngIf="errMessage">{{ errMessage }}</p>
+
+  <!-- FORM -->
+  <div class="form-body">
+
+    <div class="field">
+      <label class="field-label">Style</label>
+      <select class="field-input" [(ngModel)]="fashion.style" name="style">
+        <option *ngFor="let s of styles" [value]="s">{{ s }}</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="field-label">Title</label>
+      <input class="field-input" type="text" [(ngModel)]="fashion.title" name="title">
+    </div>
+
+    <div class="field">
+      <label class="field-label">Thumbnail URL</label>
+      <input class="field-input" type="text" [(ngModel)]="fashion.thumbnail" name="thumbnail">
+    </div>
+
+    <div class="field">
+      <label class="field-label">Or upload image</label>
+      <input type="file" class="field-file" (change)="onFileSelected($event)" accept="image/*">
+      <div class="img-preview" *ngIf="fashion.thumbnail">
+        <img [src]="fashion.thumbnail"
+             onerror="this.src='https://via.placeholder.com/200x120?text=—'">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="field-label">Details (WYSIWYG)</label>
+      <div class="editor-wrap">
+        <p-editor [(ngModel)]="fashion.details" name="details"
+                  [style]="{'height':'280px'}">
+        </p-editor>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <button class="btn-cancel" (click)="goBack()">Cancel</button>
+      <button class="btn-save" (click)="putFashion()">Update Fashion</button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="header">
+    <h2>Chuyển đổi Dương lịch thành Âm lịch</h2>
+  </div>
+
+  <div class="input-section">
+    <select [(ngModel)]="day">
+      <option *ngFor="let d of days" [value]="d">{{d}}</option>
+    </select>
+    <span>Ngày</span>
+    
+    <select [(ngModel)]="month">
+      <option *ngFor="let m of months" [value]="m">{{m}}</option>
+    </select>
+    <span>Tháng</span>
+    
+    <select [(ngModel)]="year">
+      <option *ngFor="let y of years" [value]="y">{{y}}</option>
+    </select>
+    <span>Năm</span>
+    
+    <button (click)="chuyenDoi()">Chuyển đổi</button>
+  </div>
+
+  <div class="result-header">
+    <h3>Âm Lịch</h3>
+  </div>
+
+  <div class="result-section" *ngIf="result">
+    <table>
+      <tr>
+        <td class="label">Thứ trong tuần</td>
+        <td class="value day-of-week">{{result.thuTrongTuan}}</td>
+      </tr>
+      <tr>
+        <td class="label">Ngày tháng năm âm</td>
+        <td class="value">{{result.ngayThangNamAm}}</td>
+      </tr>
+      <tr>
+        <td class="label">Năm</td>
+        <td class="value">{{result.nam}}</td>
+      </tr>
+      <tr>
+        <td class="label">Tháng</td>
+        <td class="value">{{result.thang}}</td>
+      </tr>
+      <tr>
+        <td class="label">Ngày</td>
+        <td class="value">{{result.ngay}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

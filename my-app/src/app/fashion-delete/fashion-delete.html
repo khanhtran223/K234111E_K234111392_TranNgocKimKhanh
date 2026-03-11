@@ -1,0 +1,37 @@
+<p>fashion-delete works!</p>
+<p>{{errMessage}}</p>
+<table>
+  <tr>
+    <td>Fashion ID:</td>
+    <td>
+      <input type="text" class="form-control" name="_id"
+        [(ngModel)]="fashion._id" readonly />
+    </td>
+  </tr>
+  <tr>
+    <td>Fashion Style:</td>
+    <td>
+      <input type="text" class="form-control" name="style"
+        [(ngModel)]="fashion.style" readonly />
+    </td>
+  </tr>
+  <tr>
+    <td>Fashion Subject:</td>
+    <td>
+      <input type="text" class="form-control" name="fashion_subject"
+        [(ngModel)]="fashion.fashion_subject" readonly />
+    </td>
+  </tr>
+  <tr>
+    <td>Fashion Detail:</td>
+    <td>
+      <input type="text" class="form-control" name="fashion_detail"
+        [(ngModel)]="fashion.fashion_detail" readonly />
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <button (click)="deleteFashion()">Delete</button>
+    </td>
+  </tr>
+</table>

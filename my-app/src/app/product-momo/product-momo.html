@@ -1,0 +1,171 @@
+<!-- File: src/app/product-momo/product-momo.html -->
+
+<div class="detail-wrapper" *ngIf="product">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <button class="back-btn" (click)="goBack()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      Quay lại
+    </button>
+    <span class="nav-title">Chi tiết sản phẩm</span>
+    <div class="nav-spacer"></div>
+  </nav>
+
+  <div class="detail-layout">
+
+    <!-- ===== LEFT: ẢNH SẢN PHẨM ===== -->
+    <div class="image-panel">
+      <div class="main-image">
+        <div class="image-bg"></div>
+        <div class="product-emoji">{{ product.image }}</div>
+        <div class="badge-wrap" *ngIf="product.badge">
+          <span class="badge">{{ product.badge }}</span>
+        </div>
+      </div>
+
+      <!-- Thumbnail giả (same image, UI cho đẹp) -->
+      <div class="thumbnails">
+        <div class="thumb active">{{ product.image }}</div>
+        <div class="thumb">{{ product.image }}</div>
+        <div class="thumb">{{ product.image }}</div>
+      </div>
+    </div>
+
+    <!-- ===== RIGHT: THÔNG TIN SẢN PHẨM ===== -->
+    <div class="info-panel">
+
+      <!-- Category + Rating -->
+      <div class="top-row">
+        <span class="category-tag">{{ product.category }}</span>
+        <div class="rating-row">
+          <span class="stars">★★★★{{ product.rating >= 4.5 ? '★' : '☆' }}</span>
+          <span class="rating-text">{{ product.rating }} ({{ product.reviews }} đánh giá)</span>
+        </div>
+      </div>
+
+      <!-- Tên sản phẩm -->
+      <h1 class="product-name">{{ product.name }}</h1>
+
+      <!-- Giá -->
+      <div class="price-row">
+        <span class="price-main">{{ formatCurrency(product.price) }}</span>
+        <span class="price-old" *ngIf="product.originalPrice">
+          {{ formatCurrency(product.originalPrice) }}
+        </span>
+        <span class="discount-pct" *ngIf="product.originalPrice">
+            -{{ calcDiscount(product.price, product.originalPrice) }}%
+        </span>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Chọn màu -->
+      <div class="option-group">
+        <div class="option-label">
+          Màu sắc
+          <span class="selected-val" *ngIf="selectedColor">: {{ selectedColor }}</span>
+        </div>
+        <div class="color-list">
+          <button
+            class="color-btn"
+            *ngFor="let c of colors"
+            [class.active]="selectedColor === c"
+            (click)="selectedColor = c">
+            {{ c }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Chọn size -->
+      <div class="option-group">
+        <div class="option-label">
+          Kích thước
+          <span class="selected-val" *ngIf="selectedSize">: {{ selectedSize }}</span>
+          <span class="required-note" *ngIf="!selectedSize">* Bắt buộc</span>
+        </div>
+        <div class="size-list">
+          <button
+            class="size-btn"
+            *ngFor="let s of sizes"
+            [class.active]="selectedSize === s"
+            (click)="selectedSize = s">
+            {{ s }}
+          </button>
+        </div>
+      </div>
+
+      <!-- Số lượng -->
+      <div class="option-group">
+        <div class="option-label">Số lượng</div>
+        <div class="qty-row">
+          <div class="qty-control">
+            <button class="qty-btn" (click)="decreaseQty()" [disabled]="quantity <= 1">−</button>
+            <span class="qty-value">{{ quantity }}</span>
+            <button class="qty-btn" (click)="increaseQty()" [disabled]="quantity >= 10">+</button>
+          </div>
+          <span class="stock-note">Còn 47 sản phẩm</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- Tổng tiền -->
+      <div class="total-row">
+        <span class="total-label">Tổng cộng</span>
+        <span class="total-price">{{ formatCurrency(totalPrice) }}</span>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="action-btns">
+        <button class="momo-btn" (click)="buyWithMomo()" [disabled]="isLoading">
+          <span *ngIf="!isLoading">
+            <span class="momo-m">M</span>
+            Thanh toán với MoMo
+          </span>
+          <span *ngIf="isLoading" class="loading">
+            <span class="spinner"></span> Đang xử lý...
+          </span>
+        </button>
+
+        <button class="cart-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+          Thêm vào giỏ
+        </button>
+      </div>
+
+      <!-- POLICIES -->
+      <div class="policies">
+        <div class="policy-item">
+          <span class="policy-icon">🚚</span>
+          <span>Miễn phí vận chuyển toàn quốc</span>
+        </div>
+        <div class="policy-item">
+          <span class="policy-icon">🔄</span>
+          <span>Đổi trả trong 30 ngày</span>
+        </div>
+        <div class="policy-item">
+          <span class="policy-icon">🛡️</span>
+          <span>Bảo hành chính hãng 12 tháng</span>
+        </div>
+        <div class="policy-item">
+          <span class="policy-icon">💳</span>
+          <span>Thanh toán bảo mật qua MoMo</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- LOADING STATE -->
+<div class="loading-page" *ngIf="!product">
+  <div class="spinner-lg"></div>
+  <p>Đang tải sản phẩm...</p>
+</div>

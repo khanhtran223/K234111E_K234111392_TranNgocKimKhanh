@@ -1,0 +1,33 @@
+<p>fashion-detail works!</p>
+<div *ngIf="fashion">
+    <h2>Chi tiết Fashion</h2>
+    <table border="1">
+        <tr>
+            <td>ID</td>
+            <td>{{ fashion._id }}</td>
+        </tr>
+        <tr>
+            <td>Style</td>
+            <td>{{ fashion.style }}</td>
+        </tr>
+        <tr>
+            <td>Fashion Subject</td>
+            <td>{{ fashion.fashion_subject }}</td>
+        </tr>
+        <tr>
+            <td>Fashion Detail</td>
+            <td>{{ fashion.fashion_detail }}</td>
+        </tr>
+        <tr>
+            <td>Image</td>
+            <td>
+                <img src="{{ fashion.fashion_image }}"
+                     width="150px" height="150px">
+            </td>
+        </tr>
+    </table>
+    <br>
+    <a routerLink="/ex-53">← Quay lại danh sách</a>
+</div>
+
+<p *ngIf="errMessage" style="color:red">{{ errMessage }}</p>
